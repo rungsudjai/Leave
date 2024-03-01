@@ -15,6 +15,17 @@ router.get('/',async (req, res) => {
     }
 })
 
+router.get('/edit',async (req, res) => {
+    try {
+        const {id} = req.body;
+        const Get_emp_leave = await emp_leave.findById({_id : id});
+        res.json(Get_emp_leave);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+})
+
 router.post('/', async (req, res, next) => {
     try {
         // Create a new user document using req.body
